@@ -1,0 +1,6 @@
+.custom-cell{
+    width: 80px;
+    word-wrap: break-word; /* Wrap long words to the next line */
+    overflow: hidden; /* Hide overflow content */
+    max-height: 9999px;
+}

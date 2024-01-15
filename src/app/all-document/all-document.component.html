@@ -1,0 +1,31 @@
+<p>all-document works!</p>
+<div class="container mt-4">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <!-- <th>ID</th> -->
+          <th>Name</th>
+          <th>PriorityName</th>
+          <th>File Path</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+
+          <tr *ngFor="let item of documents" >
+            
+            
+              <!-- <td><a routerLink="/document/{{item.id}}">{{ item.id }} </a></td> -->
+              <td><a routerLink="/document/{{item.id}}">{{ item.name }} </a></td>
+              <td class="custom-cell"><a routerLink="/document/{{item.id}}">{{ item.priorityName }} </a></td>
+              <td class="custom-cell"><a routerLink="/document/{{item.id}}">{{ item.file_Path }} </a></td>
+              <td><span class=" btn btn-outline-primary me-2" ><a routerLink="/documentEdit/{{item.id}}"> edit</a></span> 
+                <span class=" btn btn-danger me-2" (click)="delete( item.id )">delete</span>
+                <span class="btn btn-success" (click)="download(item.priorityName)">dowmload</span>
+              </td>
+        </tr>
+      
+      </tbody>
+    </table>
+  </div>

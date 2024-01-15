@@ -1,0 +1,91 @@
+<p>document-edit works!</p>
+<div class="container-fluid">
+    <div class="row">
+
+        <h5 style="padding-top: 2%; text-align: center;"> update Your Document</h5>
+
+        <div class="col-1"></div>
+
+        <div class="col-10 px-5 pt-3" style="border: 1px solid rgb(163, 155, 155);margin-top:10px;border-radius: 10px;">
+
+            <form [formGroup]="AddForm" (ngSubmit)="submitData(AddForm)"
+             method="post"
+             enctype="multipart/form-data" >
+                <div    class="text-danger"></div>
+                <div *ngIf="!imageEx.includes(fileExtension)">
+                    <iframe  src="../../assets/img/af4ae641-16b1-4a78-9b7c-148aaf5493bdMoaaz4.pdf" frameborder="0"
+                  width="100%" height="300px">
+                </iframe>
+                    <iframe  src="https://localhost:44381/Files/{{document.priorityName}}" frameborder="0"
+                  width="100%" height="200px">
+                </iframe>
+   
+                </div>
+                <input type="text" formControlName="id" hidden [value]="id.value" >
+
+                <div class="form-group mb-4">
+                    <!-- <div>old document Name : {{document.name}}</div>  placeholder="{{document.name}}"  -->
+                    <label   for="Name" class="form-label">Name</label>
+                    <input   name="Name" id="name" formControlName="name" [value]="name.value" 
+                           type="text" class="form-control"  />
+                    <span      class="text-danger"></span>
+                </div>
+
+                
+
+                <div class="form-group mb-4">
+                    <!-- <label   for="priorityLevel" class="form-label">PriorityLevel</label>
+                    <input   name="priorityLevel" id="priorityLevel"
+                    formControlName="priorityLevel"
+                           type="text" class="form-control" />
+                    <span    class="text-danger"></span> -->
+                    <div></div>
+                    <!-- <div>old document priority Level : {{document.priorityLevel}}</div> -->
+                    <label for="unit" class="form-label">priorityLevel</label>
+                    <select class="form-control mb-4" 
+                     formControlName="priorityLevel" id="priorityLevel">
+                        <option *ngFor="let data of Priority;" [value]="data">
+                            {{data}}
+                        </option>
+                    </select>
+                </div>
+
+
+               
+
+                
+                <div class="row">
+                    <div class="col-8">
+                        <div *ngIf="imageEx.includes(fileExtension)">
+                            <img  src="https://localhost:44381/Files/{{document.priorityName}}" class="img-fluid" alt="Image preview">
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <label   for="file_path" class="control-label">
+                            <input name="file_path"  formControlName="file_Path"
+                             id="image" multiple (change)="onFileSelected($event)"  class="form-control" type="file" />
+                        </label>
+                    </div>
+                </div>
+                        
+                <div class="mb-4 row">
+                    <div class="col-12 col-sm-6 col-lg-2 mx-0"  >
+                        <img style="margin-right:20px;" 
+                            class="preview">
+                    </div>
+                </div>
+
+                <div class="PostBtn mt-4 mb-4">
+                    <button id="submitBtn"  class="btn btn-danger">Post Now</button>
+                </div>
+
+            </form>
+
+
+        </div>
+
+        <div class="col-1"></div>
+    </div>
