@@ -16,11 +16,12 @@
           <h5 class="card-title">{{ document.name }}</h5>
           <p class="card-subtitle mb-2 text-muted">Priority: {{ document.priorityLevel }}</p>
         </div>
-        <div class="card-body">
+        <div class="card-body text-center">
           <p class="card-text">File Name: {{ document.priorityName }}</p>
           <p class="card-text">File Path: {{ document.file_Path }}</p>
           <div *ngIf="imageEx.includes(fileExtension)">
-              <img  src="https://localhost:44381/Files/{{document.priorityName}}" class="img-fluid" alt="Image preview">
+            <h3>My File</h3>
+              <img width="50%" height="150px" src="https://localhost:44381/Files/{{document.priorityName}}" class="img-fluid" alt="Image preview">
             </div>
             <div *ngIf="docEx.includes(fileExtension)">
                 <iframe  src="https://localhost:44381/Files/{{document.priorityName}}" frameborder="0"
@@ -30,16 +31,15 @@
         </div>
       </div>
 
-    <h1>my file</h1>
-    <img src="https://localhost:44381/Files/{{document.priorityName}}" alt="img" srcset="">
+    <!-- <h1>my file</h1>
+    <img width="50%" height="150px"  src="https://localhost:44381/Files/{{document.priorityName}}" alt="img" srcset=""> -->
   
-    <iframe
+    <!-- <iframe
      src="https://localhost:44381/Files/{{document.priorityName}}" frameborder="0" width="100%"
      height="400px"></iframe>
      <img src="https://localhost:44381/Files/a82b6af7-6e3f-47f1-b9ae-3c506d57be36RE4wtcN.jpg" alt="img" srcset="">
      <!-- <img src="https://localhost:44381/Files/a82b6af7-6e3f-47f1-b9ae-3c506d57be36RE4wtcN.jpg" alt="img" srcset=""> -->
      
-     <embed src="https://localhost:44381/Files/{{document.priorityName}}" type="">
     
 <!-- </body>
 </html> -->

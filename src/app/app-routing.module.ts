@@ -10,8 +10,8 @@ import { DocumentEditComponent } from './document-edit/document-edit.component';
 const routes: Routes = [
   {path: 'Register',component:RegisterComponent},
   {path: 'login',component:LoginComponent},
-  {path: 'Add',component:AddDocumentComponent},
-  {path: 'All',component:AllDocumentComponent},
+  {path: 'Add/:id',component:AddDocumentComponent},
+  {path: 'All/:id',component:AllDocumentComponent},
   {path: 'document/:id',component:DocumentInfoComponent},
   {path: 'documentEdit/:id',component:DocumentEditComponent},
 

@@ -25,7 +25,7 @@ export class DocumentService {
     return this.myhttp.get("https://localhost:44381/api/Document")
     .pipe(catchError((err) => {
       return throwError(() => err.message || "server error");
-    }));;
+    }));
   }
 
   async GetDocument(id:number): Promise<Observable<any>> {
@@ -40,8 +40,8 @@ export class DocumentService {
       return throwError(() => err.message || "server error");
     }));;
   }
-  downloadDocument(file:any): Observable<any>{
-    return  this.myhttp.get(`https://localhost:44381/api/Document/download?fileName=${file}`)
+  downloadDocument(file:any): Observable<Blob>{
+    return  this.myhttp.get(`https://localhost:44381/api/Document/download?fileName=${file}`,{ responseType: 'blob' })
     .pipe(catchError((err) => {
       return throwError(() => err.message || "server error");
     }));;

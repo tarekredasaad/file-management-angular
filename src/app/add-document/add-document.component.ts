@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DocumentService } from '../Services/document.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-add-document',
@@ -9,11 +10,13 @@ import { DocumentService } from '../Services/document.service';
 })
 export class AddDocumentComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private documentSevice:DocumentService) {
+  constructor(private fb:FormBuilder,private documentSevice:DocumentService
+    ,private activerout:ActivatedRoute) {
   }
+  UserId:any
   AddForm: any=this.fb.group({
     name:['',[Validators.required]],
-    priorityName:['',[Validators.required]],
+    userId:"0",
     priorityLevel:['',[Validators.required]],
     file_Path: ['',[Validators.required]],
   });
@@ -28,13 +31,17 @@ export class AddDocumentComponent implements OnInit {
   get name(){
     return this.AddForm.get('name');
   }
-  get priorityName(){
-    return this.AddForm.get('priorityName');
+  get userId(){
+    return this.AddForm.get('userId');
   }
   get priorityLevel(){
     return this.AddForm.get('priorityLevel');
   }
   ngOnInit(): void {
+    this.activerout.paramMap.subscribe((parm: ParamMap) => {
+      this.UserId = parm.get("id")
+      console.log(this.UserId);
+    });
   }
   async submitData(data:FormGroup){
     for(let file of this.list){
@@ -44,7 +51,7 @@ export class AddDocumentComponent implements OnInit {
       formData.append('file_Path', file,file.name);
       // formData = data
     formData.append('name', this.AddForm.get("name").value);
-    // formData.append('priorityName', this.AddForm.get("priorityName").value);
+    formData.append('userId', this.UserId);
     formData.append('priorityLevel', this.AddForm.get("priorityLevel").value);
     console.log(file)
     console.log(file.name)
@@ -56,7 +63,11 @@ export class AddDocumentComponent implements OnInit {
         next: data => {
           console.log(data)
          
-          
+          var message = document.getElementById("message")
+          if(message != null){
+
+            message.innerHTML=`${data.result.data} your Document has been Added successfully`
+          }
           
          
         
@@ -85,28 +96,7 @@ export class AddDocumentComponent implements OnInit {
       this.selectedFiles = event.target.files;
       console.log('Selected Files:', this.selectedFiles);
       this.list = event.target.files;
-      // for(let file of event.target.files){
-      //   // this.selectedFiles
-      //   this.list.push({
-      //     name: file.name,
-      //     type: file.type,
-      //     lastModified: file.lastModified,
-      //     webkitRelativePath: file.webkitRelativePath,
-      //     size: file.size,
-      //     arrayBuffer: function (): Promise<ArrayBuffer> {
-      //       throw new Error('Function not implemented.');
-      //     },
-      //     slice: function (start?: number | undefined, end?: number | undefined, contentType?: string | undefined): Blob {
-      //       throw new Error('Function not implemented.');
-      //     },
-      //     stream: function (): ReadableStream<Uint8Array> {
-      //       throw new Error('Function not implemented.');
-      //     },
-      //     text: function (): Promise<string> {
-      //       throw new Error('Function not implemented.');
-      //     }
-      //   })
-      // }
+      
       console.log(this.list)
       // Process the selected files
       this.processFiles(selectedFiles);

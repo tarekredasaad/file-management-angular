@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
             console.log(data)
            if(data.statusCode == 200){
 
-             this.rout.navigate(['/home']);
+             this.rout.navigate([`/All/${data.data.id}`]);
            }else{
             var alert = document.getElementById("alert");
             if(alert != null){
